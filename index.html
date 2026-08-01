@@ -1,10 +1,141 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Vertixan Verification</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vertixan Certificate Verification</title>
+
+<style>
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f4f6f9;
+    margin:0;
+    padding:40px;
+}
+
+.container{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 5px 20px rgba(0,0,0,.1);
+}
+
+h1{
+    text-align:center;
+    color:#1e3a8a;
+}
+
+.success{
+    color:green;
+    font-size:28px;
+    font-weight:bold;
+    text-align:center;
+    margin-top:20px;
+}
+
+.fail{
+    color:red;
+    font-size:28px;
+    font-weight:bold;
+    text-align:center;
+    margin-top:20px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:25px;
+}
+
+td{
+    padding:12px;
+    border-bottom:1px solid #ddd;
+}
+
+td:first-child{
+    font-weight:bold;
+    width:220px;
+}
+</style>
+
 </head>
+
 <body>
+
+<div class="container">
+
 <h1>Vertixan Certificate Verification</h1>
-<p>Verification system coming soon.</p>
+
+<div id="result">Checking certificate...</div>
+
+</div>
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+const certificateId = params.get("id");
+
+fetch("data.json")
+.then(res=>res.json())
+.then(data=>{
+
+const certificate=data.find(
+item=>item.certificate_id===certificateId
+);
+
+const result=document.getElementById("result");
+
+if(certificate){
+
+result.innerHTML=`
+
+<div class="success">
+✅ VERIFIED
+</div>
+
+<table>
+
+<tr>
+<td>Certificate ID</td>
+<td>${certificate.certificate_id}</td>
+</tr>
+
+<tr>
+<td>Intern ID</td>
+<td>${certificate.intern_id}</td>
+</tr>
+
+<tr>
+<td>Name</td>
+<td>${certificate.name}</td>
+</tr>
+
+<tr>
+<td>Status</td>
+<td>${certificate.status}</td>
+</tr>
+
+</table>
+
+`;
+
+}else{
+
+result.innerHTML=`
+
+<div class="fail">
+❌ INVALID CERTIFICATE
+</div>
+
+`;
+
+}
+
+});
+
+</script>
+
 </body>
 </html>
