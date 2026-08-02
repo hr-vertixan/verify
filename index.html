@@ -206,6 +206,23 @@ Official Credential Verification Portal
 </div>
 
 </div>
+ <script>
+
+async function loadData(){
+
+    const response = await fetch("data.json");
+    const data = await response.json();
+
+    document.getElementById("certificate_id").textContent=data[0].certificate_id;
+    document.getElementById("intern_id").textContent=data[0].intern_id;
+    document.getElementById("name").textContent=data[0].name;
+    document.getElementById("status").textContent=data[0].status;
+
+}
+
+loadData();
+
+</script> 
 
 </body>
 </html>
