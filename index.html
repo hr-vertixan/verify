@@ -3,61 +3,266 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vertixan Certificate Verification</title>
+
+<title>Vertixan Credential Verification</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
 body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:#f4f6f9;
-    margin:0;
-    padding:40px;
+
+font-family:'Inter',sans-serif;
+
+background:
+linear-gradient(135deg,#0f172a,#1e293b);
+
+color:white;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+min-height:100vh;
+
+padding:25px;
+
+overflow-x:hidden;
+
 }
 
 .container{
-    max-width:700px;
-    margin:auto;
-    background:white;
-    padding:30px;
-    border-radius:12px;
-    box-shadow:0 5px 20px rgba(0,0,0,.1);
+
+width:100%;
+max-width:750px;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,.15);
+
+border-radius:22px;
+
+padding:40px;
+
+box-shadow:
+
+0 15px 40px rgba(0,0,0,.45);
+
+animation:fade .8s ease;
+
+}
+
+.logo{
+
+width:70px;
+height:70px;
+
+margin:auto;
+
+border-radius:50%;
+
+background:#2563eb;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:28px;
+
+font-weight:bold;
+
 }
 
 h1{
-    text-align:center;
-    color:#1e3a8a;
+
+margin-top:20px;
+
+text-align:center;
+
+font-size:30px;
+
+font-weight:700;
+
 }
 
-.success{
-    color:green;
-    font-size:28px;
-    font-weight:bold;
-    text-align:center;
-    margin-top:20px;
+.subtitle{
+
+text-align:center;
+
+margin-top:8px;
+
+color:#cbd5e1;
+
 }
 
-.fail{
-    color:red;
-    font-size:28px;
-    font-weight:bold;
-    text-align:center;
-    margin-top:20px;
+.badge{
+
+width:160px;
+
+margin:35px auto;
+
+padding:14px;
+
+border-radius:40px;
+
+background:#16a34a;
+
+text-align:center;
+
+font-weight:700;
+
+font-size:20px;
+
+animation:pop .8s;
+
+box-shadow:0 0 25px rgba(34,197,94,.45);
+
 }
 
-table{
-    width:100%;
-    border-collapse:collapse;
-    margin-top:25px;
+.card{
+
+margin-top:25px;
+
+background:rgba(255,255,255,.05);
+
+border-radius:16px;
+
+padding:25px;
+
 }
 
-td{
-    padding:12px;
-    border-bottom:1px solid #ddd;
+.row{
+
+display:flex;
+
+justify-content:space-between;
+
+padding:14px 0;
+
+border-bottom:1px solid rgba(255,255,255,.08);
+
 }
 
-td:first-child{
-    font-weight:bold;
-    width:220px;
+.row:last-child{
+
+border:none;
+
 }
+
+.label{
+
+color:#94a3b8;
+
+font-weight:500;
+
+}
+
+.value{
+
+font-weight:600;
+
+text-align:right;
+
+}
+
+.footer{
+
+margin-top:35px;
+
+text-align:center;
+
+font-size:14px;
+
+color:#94a3b8;
+
+}
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+
+transform:translateY(30px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+@keyframes pop{
+
+0%{
+
+transform:scale(.6);
+
+opacity:0;
+
+}
+
+70%{
+
+transform:scale(1.08);
+
+}
+
+100%{
+
+transform:scale(1);
+
+}
+
+}
+
+@media(max-width:650px){
+
+.container{
+
+padding:25px;
+
+}
+
+.row{
+
+flex-direction:column;
+
+gap:8px;
+
+}
+
+.value{
+
+text-align:left;
+
+}
+
+h1{
+
+font-size:24px;
+
+}
+
+}
+
 </style>
 
 </head>
@@ -66,76 +271,96 @@ td:first-child{
 
 <div class="container">
 
-<h1>Vertixan Certificate Verification</h1>
+<div class="logo">V</div>
 
-<div id="result">Checking certificate...</div>
+<h1>Vertixan</h1>
+
+<div class="subtitle">
+
+Official Credential Verification Portal
 
 </div>
 
-<script>
+<div id="result">
 
-const params = new URLSearchParams(window.location.search);
-const certificateId = params.get("id");
+<div class="badge">
 
-fetch("data.json")
-.then(res=>res.json())
-.then(data=>{
+✓ VERIFIED
 
-const certificate=data.find(
-item=>item.certificate_id===certificateId
-);
-
-const result=document.getElementById("result");
-
-if(certificate){
-
-result.innerHTML=`
-
-<div class="success">
-✅ VERIFIED
 </div>
 
-<table>
+<div class="card">
 
-<tr>
-<td>Certificate ID</td>
-<td>${certificate.certificate_id}</td>
-</tr>
+<div class="row">
 
-<tr>
-<td>Intern ID</td>
-<td>${certificate.intern_id}</td>
-</tr>
+<div class="label">
 
-<tr>
-<td>Name</td>
-<td>${certificate.name}</td>
-</tr>
+Certificate ID
 
-<tr>
-<td>Status</td>
-<td>${certificate.status}</td>
-</tr>
-
-</table>
-
-`;
-
-}else{
-
-result.innerHTML=`
-
-<div class="fail">
-❌ INVALID CERTIFICATE
 </div>
 
-`;
+<div class="value" id="certificate_id">
 
-}
+Loading...
 
-});
+</div>
 
-</script>
+</div>
 
-</body>
-</html>
+<div class="row">
+
+<div class="label">
+
+Intern ID
+
+</div>
+
+<div class="value" id="intern_id">
+
+Loading...
+
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="label">
+
+Candidate Name
+
+</div>
+
+<div class="value" id="name">
+
+Loading...
+
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="label">
+
+Status
+
+</div>
+
+<div class="value" id="status">
+
+Verified
+
+</div>
+
+</div>
+
+</div>
+
+<div class="footer">
+
+© 2026 Vertixan • All Rights Reserved
+
+</div>
+
+</div>
