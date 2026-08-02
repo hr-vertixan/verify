@@ -192,6 +192,21 @@ Official Credential Verification Portal
 <span class="value" id="name">Loading...</span>
 </div>
 
+ <div class="row">
+<span class="label">Course</span>
+<span class="value" id="course">Loading...</span>
+</div>
+
+<div class="row">
+<span class="label">Duration</span>
+<span class="value" id="duration">Loading...</span>
+</div>
+
+<div class="row">
+<span class="label">Issue Date</span>
+<span class="value" id="issue_date">Loading...</span>
+</div>
+
 <div class="row">
 <span class="label">Status</span>
 <span class="value" id="status">Verified</span>
@@ -230,6 +245,9 @@ async function loadData(){
         document.getElementById("certificate_id").textContent = certificate.certificate_id;
         document.getElementById("intern_id").textContent = certificate.intern_id;
         document.getElementById("name").textContent = certificate.name;
+        document.getElementById("course").textContent = certificate.course;
+        document.getElementById("duration").textContent = certificate.duration;
+        document.getElementById("issue_date").textContent = certificate.issue_date;
         document.getElementById("status").textContent = certificate.status;
 
     }
@@ -238,7 +256,10 @@ async function loadData(){
         document.getElementById("certificate_id").textContent = "Invalid Certificate";
         document.getElementById("intern_id").textContent = "-";
         document.getElementById("name").textContent = "-";
-        document.getElementById("status").textContent = "Not Found";
+        document.getElementById("course").textContent = "-";
+        document.getElementById("duration").textContent = "-";
+        document.getElementById("issue_date").textContent = "-";
+        document.getElementById("status").textContent = "Not Verified";
 
     }
 
