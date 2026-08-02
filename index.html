@@ -3,72 +3,209 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JSON Test</title>
+
+<title>Vertixan Credential Verification</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
+
 body{
-    background:#111827;
-    color:white;
-    font-family:Arial,sans-serif;
-    text-align:center;
-    padding:40px;
+background:linear-gradient(135deg,#020617,#0f172a,#1e293b);
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:20px;
+color:#fff;
 }
 
-button{
-    padding:12px 25px;
-    font-size:18px;
-    cursor:pointer;
-    margin-top:20px;
+.container{
+width:100%;
+max-width:720px;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.12);
+border-radius:20px;
+padding:35px;
+box-shadow:0 20px 50px rgba(0,0,0,.4);
+animation:fade .8s;
 }
 
-pre{
-    background:#1f2937;
-    padding:20px;
-    margin-top:30px;
-    border-radius:10px;
-    text-align:left;
-    overflow:auto;
+.logo{
+width:70px;
+height:70px;
+margin:auto;
+border-radius:50%;
+background:#2563eb;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:30px;
+font-weight:700;
 }
+
+h1{
+text-align:center;
+margin-top:18px;
+font-size:32px;
+}
+
+.subtitle{
+text-align:center;
+margin-top:8px;
+color:#cbd5e1;
+}
+
+.badge{
+margin:30px auto;
+width:180px;
+background:#16a34a;
+padding:14px;
+border-radius:40px;
+text-align:center;
+font-size:20px;
+font-weight:700;
+box-shadow:0 0 20px rgba(34,197,94,.4);
+animation:pop .6s;
+}
+
+.card{
+margin-top:20px;
+background:rgba(255,255,255,.05);
+border-radius:15px;
+padding:25px;
+}
+
+.row{
+display:flex;
+justify-content:space-between;
+padding:14px 0;
+border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.row:last-child{
+border:none;
+}
+
+.label{
+color:#94a3b8;
+}
+
+.value{
+font-weight:600;
+}
+
+.footer{
+margin-top:30px;
+text-align:center;
+font-size:14px;
+color:#94a3b8;
+}
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(25px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+@keyframes pop{
+0%{
+transform:scale(.7);
+opacity:0;
+}
+100%{
+transform:scale(1);
+opacity:1;
+}
+}
+
+@media(max-width:600px){
+
+.container{
+padding:25px;
+}
+
+.row{
+flex-direction:column;
+gap:8px;
+}
+
+.value{
+text-align:left;
+}
+
+h1{
+font-size:26px;
+}
+
+}
+
 </style>
 
 </head>
+
 <body>
 
-<h1>Vertixan JSON Test</h1>
+<div class="container">
 
-<button onclick="loadData()">Load data.json</button>
+<div class="logo">V</div>
 
-<pre id="output">Click the button...</pre>
+<h1>Vertixan</h1>
 
-<script>
+<div class="subtitle">
+Official Credential Verification Portal
+</div>
 
-async function loadData(){
+<div id="result">
 
-    try{
+<div class="badge">
+✓ VERIFIED
+</div>
 
-        const response = await fetch("data.json");
+<div class="card">
 
-        if(!response.ok){
-            throw new Error("HTTP Error : " + response.status);
-        }
+<div class="row">
+<span class="label">Certificate ID</span>
+<span class="value" id="certificate_id">Loading...</span>
+</div>
 
-        const data = await response.json();
+<div class="row">
+<span class="label">Intern ID</span>
+<span class="value" id="intern_id">Loading...</span>
+</div>
 
-        document.getElementById("output").textContent =
-        JSON.stringify(data,null,4);
+<div class="row">
+<span class="label">Candidate Name</span>
+<span class="value" id="name">Loading...</span>
+</div>
 
-    }
+<div class="row">
+<span class="label">Status</span>
+<span class="value" id="status">Verified</span>
+</div>
 
-    catch(err){
+</div>
 
-        document.getElementById("output").textContent =
-        "ERROR : " + err;
+<div class="footer">
+© 2026 Vertixan • All Rights Reserved
+</div>
 
-    }
+</div>
 
-}
-
-</script>
+</div>
 
 </body>
 </html>
