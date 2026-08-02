@@ -211,6 +211,17 @@ Official Credential Verification Portal
 </div>
 
 <script>
+  if (!certificateId) {
+    document.getElementById("result").innerHTML = `
+        <div class="card">
+            <h2 style="text-align:center;color:#3b82f6;">Vertixan Credential Verification</h2>
+            <p style="text-align:center;margin-top:20px;color:#cbd5e1;">
+                Please scan a Vertixan Certificate QR Code or open a verification link containing a Certificate ID.
+            </p>
+        </div>
+    `;
+    throw new Error("No certificate ID provided");
+}
 const params = new URLSearchParams(window.location.search);
 const certificateId = params.get("id");
 
