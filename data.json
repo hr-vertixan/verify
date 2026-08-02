@@ -2,7 +2,19 @@
   {
     "certificate_id": "VRX-CERT-2026-A7K9P2",
     "intern_id": "VRX-INT-2026-CS-01-02",
-    "name": "Rahul Sharma",
+    "name": "Yash Nanekar",
+    "course": "Computer Science",
+    "duration": "2 Month",
+    "issue_date": "03 August 2026",
+    "status": "Verified"
+  },
+  {
+    "certificate_id": "VRX-CERT-2026-B8L4Q5",
+    "intern_id": "VRX-INT-2026-CS-01-03",
+    "name": "Akash Gowda",
+    "course": "Computer Science",
+    "duration": "2 Months",
+    "issue_date": "03 August 2026",
     "status": "Verified"
   }
 ]
