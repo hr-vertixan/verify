@@ -213,15 +213,38 @@ async function loadData(){
     const response = await fetch("data.json");
     const data = await response.json();
 
-    document.getElementById("certificate_id").textContent=data[0].certificate_id;
-    document.getElementById("intern_id").textContent=data[0].intern_id;
-    document.getElementById("name").textContent=data[0].name;
-    document.getElementById("status").textContent=data[0].status;
+
+    // URL se certificate ID lena
+    const urlParams = new URLSearchParams(window.location.search);
+    const certificateID = urlParams.get("id");
+
+
+    // JSON me certificate search karna
+    const certificate = data.find(
+        item => item.certificate_id === certificateID
+    );
+
+
+    if(certificate){
+
+        document.getElementById("certificate_id").textContent = certificate.certificate_id;
+        document.getElementById("intern_id").textContent = certificate.intern_id;
+        document.getElementById("name").textContent = certificate.name;
+        document.getElementById("status").textContent = certificate.status;
+
+    }
+    else{
+
+        document.getElementById("certificate_id").textContent = "Invalid Certificate";
+        document.getElementById("intern_id").textContent = "-";
+        document.getElementById("name").textContent = "-";
+        document.getElementById("status").textContent = "Not Found";
+
+    }
 
 }
 
 loadData();
-
 </script> 
 
 </body>
